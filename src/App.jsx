@@ -37,6 +37,7 @@ function App() {
     console.log(e.target.name, e.target.value);
 
     console.log(newArticlesData);
+
     setArticleField(newArticlesData);
   };
 
@@ -48,13 +49,20 @@ function App() {
     newArticleList.push({
       title: e.target.title.value,
       author: e.target.author.value,
-      published: "",
+      published: e.target.value,
       image: e.target.image.value,
       category: e.target.category.value,
       content: e.target.content.value,
     });
+    console.log("title: " + e.target.title.value);
+    console.log("published: " + e.target.value);
 
     setArticleList(newArticleList);
+  };
+
+  // handle publish article select
+  const handlerPublishArticle = (e) => {
+    console.log(e.target.value);
   };
 
   // edit item handler
@@ -128,10 +136,14 @@ function App() {
             onChange={handleInputChange}
             placeholder="content"
           />
-          <select name="published" id="select-published">
+          <select
+            onChange={handleInputChange}
+            name="published"
+            id="select-published"
+          >
             <option value="">Pubblicazione</option>
-            <option value="0">Salva come bozza</option>
-            <option value="1">Pubblica Articolo</option>
+            <option value="no">Salva come bozza</option>
+            <option value="yes">Pubblica Articolo</option>
           </select>
 
           <button>Crea</button>
