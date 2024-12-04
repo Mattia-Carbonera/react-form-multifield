@@ -13,7 +13,7 @@ function App() {
   const [articleField, setArticleField] = useState({
     title: "",
     author: "",
-    published: "yes",
+    published: "",
     image: "",
     category: "",
     content: "",
@@ -24,18 +24,19 @@ function App() {
 
   // click handler
   const handleInputChange = (e) => {
-    console.log(e.target.value);
     const newArticlesData = {
       ...articleField,
-      [e.target.title]: e.target.title.value,
-      [e.target.author]: e.target.author.value,
-      [e.target.published]: e.target.published.value,
-      [e.target.image]: e.target.image.value,
-      [e.target.category]: e.target.category.value,
-      [e.target.content]: e.target.content.value,
+      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
     };
 
-    console.log(e.target.title);
+    console.log(e.target.name, e.target.value);
+
+    console.log(newArticlesData);
     setArticleField(newArticlesData);
   };
 
@@ -47,7 +48,7 @@ function App() {
     newArticleList.push({
       title: e.target.title.value,
       author: e.target.author.value,
-      published: "yes",
+      published: "",
       image: e.target.image.value,
       category: e.target.category.value,
       content: e.target.content.value,
@@ -127,6 +128,11 @@ function App() {
             onChange={handleInputChange}
             placeholder="content"
           />
+          <select name="published" id="select-published">
+            <option value="">Pubblicazione</option>
+            <option value="0">Salva come bozza</option>
+            <option value="1">Pubblica Articolo</option>
+          </select>
 
           <button>Crea</button>
         </form>
@@ -139,10 +145,10 @@ function App() {
               <li key={index}>
                 <div className="article-container">
                   <div className="article-content">
+                    <img src={article.image} alt="Image" />
                     <h2>{article.title}</h2>
                     <span>{article.author}</span>
                     <span>{article.published}</span>
-                    <span>{article.image}</span>
                     <span>{article.category}</span>
                     <span>{article.content}</span>
                   </div>
