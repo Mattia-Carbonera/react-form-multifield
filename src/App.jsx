@@ -8,29 +8,49 @@ function App() {
   });
 
   const [articlesList, setArticleList] = useState(filteredPublishedArticles);
-  const [inputTitle, setInputTitle] = useState("");
-  const [inputAuthor, setInputAuthor] = useState("");
+
+  // articles create
+  const [articleField, setArticleField] = useState({
+    title: "",
+    author: "",
+    published: "yes",
+    image: "",
+    category: "",
+    content: "",
+  });
+
+  // name editor articles
   const [inputChange, setInputChange] = useState("");
 
   // click handler
-  const handleInput = (e) => {
-    setInputTitle(e.target.value);
-    setInputAuthor(e.target.value);
-    setInputChange(e.target.value);
+  const handleInputChange = (e) => {
+    console.log(e.target.value);
+    const newArticlesData = {
+      ...articleField,
+      [e.target.title]: e.target.title.value,
+      [e.target.author]: e.target.author.value,
+      [e.target.published]: e.target.published.value,
+      [e.target.image]: e.target.image.value,
+      [e.target.category]: e.target.category.value,
+      [e.target.content]: e.target.content.value,
+    };
+
+    console.log(e.target.title);
+    setArticleField(newArticlesData);
   };
 
-  // submit handler
-  const articlesListHandler = (e) => {
+  // submit handler fonm
+  const articlesListSubmitHandler = (e) => {
     e.preventDefault();
 
     const newArticleList = [...articlesList];
     newArticleList.push({
-      title: inputTitle,
-      author: inputAuthor,
+      title: e.target.title.value,
+      author: e.target.author.value,
       published: "yes",
-      image: "",
-      category: "",
-      content: "",
+      image: e.target.image.value,
+      category: e.target.category.value,
+      content: e.target.content.value,
     });
 
     setArticleList(newArticleList);
@@ -38,15 +58,20 @@ function App() {
 
   // edit item handler
   const editItem = (modifyArticle, index) => {
-    const modifyArticleList = [...articlesList];
-
-    const newModifyArray = modifyArticleList.map((articleItem) =>
-      articleItem == modifyArticle
-        ? { title: inputChange, author: modifyArticleList[index].author }
-        : articleItem
-    );
-
-    setArticleList(newModifyArray);
+    // const modifyArticleList = [...articlesList];
+    // const newModifyArray = modifyArticleList.map((articleItem) =>
+    //   articleItem == modifyArticle
+    //     ? {
+    //         title: "a",
+    //         author: "s",
+    //         published: "yes",
+    //         image: "d",
+    //         category: "f",
+    //         content: "g",
+    //       }
+    //     : articleItem
+    // );
+    // setArticleList(newModifyArray);
   };
 
   // delete title handler
@@ -65,36 +90,41 @@ function App() {
           <h1>Form</h1>
         </div>
 
-        <form onSubmit={articlesListHandler}>
+        <form onSubmit={articlesListSubmitHandler}>
           <input
             type="text"
             name="title"
-            onChange={handleInput}
+            value={articleField.title}
+            onChange={handleInputChange}
             placeholder="Titolo"
           />
           <input
             type="text"
             name="author"
-            onChange={handleInput}
+            value={articleField.author}
+            onChange={handleInputChange}
             placeholder="Autore"
           />
           <input
             type="text"
             name="image"
-            onChange={handleInput}
+            value={articleField.image}
+            onChange={handleInputChange}
             placeholder="image"
           />
           <input
             type="text"
             name="category"
-            onChange={handleInput}
+            value={articleField.category}
+            onChange={handleInputChange}
             placeholder="category"
           />
           <input
             className="content-input"
             type="text"
             name="content"
-            onChange={handleInput}
+            value={articleField.content}
+            onChange={handleInputChange}
             placeholder="content"
           />
 
@@ -111,6 +141,10 @@ function App() {
                   <div className="article-content">
                     <h2>{article.title}</h2>
                     <span>{article.author}</span>
+                    <span>{article.published}</span>
+                    <span>{article.image}</span>
+                    <span>{article.category}</span>
+                    <span>{article.content}</span>
                   </div>
                   <button
                     onClick={() => deleteItemHandler(article)}
@@ -128,7 +162,7 @@ function App() {
                     </button>
                     <input
                       type="text"
-                      onChange={handleInput}
+                      onChange={handleInputChange}
                       name="modify"
                       placeholder="Modifica"
                     />
