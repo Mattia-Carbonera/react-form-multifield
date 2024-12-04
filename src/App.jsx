@@ -34,9 +34,9 @@ function App() {
       [e.target.name]: e.target.value,
     };
 
-    console.log(e.target.name, e.target.value);
-
-    console.log(newArticlesData);
+    // console.log(e.target.name, e.target.value);
+    // console.log(newArticlesData);
+    console.log(articleField);
 
     setArticleField(newArticlesData);
   };
@@ -49,15 +49,20 @@ function App() {
     newArticleList.push({
       title: e.target.title.value,
       author: e.target.author.value,
-      published: e.target.value,
+      published: e.target.published.value,
       image: e.target.image.value,
       category: e.target.category.value,
       content: e.target.content.value,
     });
-    console.log("title: " + e.target.title.value);
-    console.log("published: " + e.target.value);
+    // console.log("title: " + e.target.title.value);
+    // console.log("published: " + e.target.value);
+    console.log(articleField);
 
-    setArticleList(newArticleList);
+    const newArticleListFiltered = newArticleList.filter(
+      (el) => el.published != "no"
+    );
+
+    setArticleList(newArticleListFiltered);
   };
 
   // handle publish article select
