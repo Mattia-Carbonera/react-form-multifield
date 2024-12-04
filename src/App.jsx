@@ -17,6 +17,7 @@ function App() {
     image: "",
     category: "",
     content: "",
+    tag: "tag prova",
   });
 
   // name editor articles
@@ -32,13 +33,14 @@ function App() {
       [e.target.name]: e.target.value,
       [e.target.name]: e.target.value,
       [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
     };
 
     // console.log(e.target.name, e.target.value);
     // console.log(newArticlesData);
-    console.log(articleField);
 
     setArticleField(newArticlesData);
+    console.log(articleField);
   };
 
   // submit handler fonm
@@ -56,7 +58,6 @@ function App() {
     });
     // console.log("title: " + e.target.title.value);
     // console.log("published: " + e.target.value);
-    console.log(articleField);
 
     const newArticleListFiltered = newArticleList.filter(
       (el) => el.published != "no"
@@ -150,6 +151,36 @@ function App() {
             <option value="no">Salva come bozza</option>
             <option value="yes">Pubblica Articolo</option>
           </select>
+
+          <div className="checkbox-tag-container">
+            <input
+              key={1}
+              onChange={handleInputChange}
+              value={"tag1"}
+              name="checkTag"
+              type="checkbox"
+              className="check-tag-uno"
+            />
+            <label htmlFor="check-tag-uno">Tag1</label>
+            <input
+              key={2}
+              onChange={handleInputChange}
+              value={"tag2"}
+              name="checkTag"
+              type="checkbox"
+              className="check-tag-due"
+            />
+            <label htmlFor="check-tag-due">Tag2</label>
+            <input
+              key={3}
+              onChange={handleInputChange}
+              value={"tag3"}
+              name="checkTag"
+              type="checkbox"
+              className="publish-control"
+            />
+            <label htmlFor="publish-control">Tag3</label>
+          </div>
 
           <button>Crea</button>
         </form>

@@ -6,6 +6,7 @@ const articles = [
     image: "https://picsum.photos/20",
     category: "category1",
     content: "content1",
+    tag: "tag prova",
   },
   {
     title: "Title2",
@@ -14,6 +15,7 @@ const articles = [
     image: "https://picsum.photos/20",
     category: "category2",
     content: "content2",
+    tag: "tag prova",
   },
   {
     title: "Title3",
@@ -22,6 +24,7 @@ const articles = [
     image: "https://picsum.photos/20",
     category: "category3",
     content: "content3",
+    tag: "tag prova",
   },
   {
     title: "Title4",
@@ -30,6 +33,7 @@ const articles = [
     image: "https://picsum.photos/20",
     category: "category4",
     content: "content4",
+    tag: "tag prova",
   },
   {
     title: "Title5",
@@ -38,6 +42,7 @@ const articles = [
     image: "https://picsum.photos/20",
     category: "category",
     content: "content",
+    tag: "tag prova",
   },
 ];
 
